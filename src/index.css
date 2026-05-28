@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Stretch Pro';
+  src: url('/FONTES/StretchPro.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-ExtraBoldItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/FONTES/CreatoDisplay-BlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Creato Display", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Stretch Pro", sans-serif;
+  --font-mono: "Creato Display", ui-monospace, SFMono-Regular, monospace;
+
+  --color-vusk-bg: #0B080F;
+  --color-vusk-card: #14101B;
+  --color-vusk-border: #241E30;
+  --color-vusk-purple: #5521B6;
+  --color-vusk-secondary: #F8F7FF;
+  --color-vusk-text-primary: #F8F7FF;
+  --color-vusk-text-secondary: #9C94B0;
+  --color-vusk-success: #10B981;
+}
+
+body {
+  background-color: #0B080F;
+  color: #F8F7FF;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom stretch-pro style for high impact headings */
+.font-stretch {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-stretch: expanded;
+}
+
+/* Beautiful custom animations and visual polish */
+.glow-card {
+  position: relative;
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(85, 33, 182, 0.4) 0%, rgba(20, 16, 27, 0) 50%, rgba(248, 247, 255, 0.1) 100%);
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.glow-card:hover::after {
+  opacity: 1;
+}
+
+/* Glassmorphism utility */
+.glass-effect {
+  backdrop-filter: blur(12px);
+  background-color: rgba(20, 16, 27, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Aurora spotlight background */
+.aurora-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(85, 33, 182, 0.15) 0%, rgba(11, 8, 15, 0) 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custom seamless scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0B080F;
+}
+::-webkit-scrollbar-thumb {
+  background: #241E30;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5521B6;
+}
+
+/* Progress bar fill transition */
+.progress-fill-animate {
+  transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
