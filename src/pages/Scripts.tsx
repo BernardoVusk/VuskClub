@@ -174,9 +174,9 @@ export const Scripts: React.FC = () => {
   return (
     <div className="space-y-8 animate-fade-in pb-12">
       {/* Upper filter bar row */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-vusk-card/40 border border-vusk-border p-4 rounded-xl glass-effect">
-        {/* Platform tabs selection */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-[#14101B]/40 border border-[#241E30] p-4 rounded-xl glass-effect">
+        {/* Platform tabs selection - Touch target height h-11 and horizontal scrolling with indicator */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none scroll-smooth">
           {(Object.keys(platformMeta) as Array<keyof typeof platformMeta>).map((plat) => {
             const Icon = platformMeta[plat].icon;
             const active = activePlatform === plat;
@@ -188,27 +188,27 @@ export const Scripts: React.FC = () => {
                   setActivePlatform(plat);
                   setAiResponse(null);
                 }}
-                className={`px-3 py-2 text-xs font-mono tracking-wider font-semibold rounded-lg shrink-0 flex items-center gap-2 transition-all ${
+                className={`h-11 px-4 text-xs font-mono tracking-wider font-semibold rounded-lg shrink-0 flex items-center gap-2 transition-all cursor-pointer ${
                   active 
                     ? 'bg-vusk-purple text-vusk-secondary shadow-[0_4px_15px_rgba(85,33,182,0.2)]' 
                     : 'text-vusk-text-secondary hover:text-vusk-secondary hover:bg-white/[0.03]'
                 }`}
               >
-                <Icon className={`w-4 h-4 ${platformMeta[plat].color}`} />
+                <Icon className={`w-4 h-4 shrink-0 ${platformMeta[plat].color}`} />
                 <span>{platformMeta[plat].label.toUpperCase()}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Dropdown product filter */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          <span className="text-[10px] text-vusk-text-secondary font-mono uppercase">Filtrar por produto:</span>
+        {/* Dropdown product filter - Touch target h-11 and fluid layout on mobile */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 shrink-0 w-full md:w-auto">
+          <span className="text-[10px] text-vusk-text-secondary font-mono uppercase hidden sm:inline">Filtrar:</span>
           <select
             id="product-copy-filter"
             value={selectedProductId}
             onChange={(e) => setSelectedProductId(e.target.value)}
-            className="h-9 px-3 bg-vusk-bg border border-vusk-border rounded-lg text-xs font-mono text-vusk-secondary focus:border-vusk-purple focus:outline-none"
+            className="w-full md:w-auto h-11 px-3 bg-[#0B080F] border border-[#241E30] rounded-lg text-base md:text-xs font-mono text-vusk-secondary focus:border-vusk-purple focus:outline-none"
           >
             <option value="all">TODOS OS MINI-SAAS</option>
             {products.map(p => (
@@ -247,7 +247,7 @@ export const Scripts: React.FC = () => {
           {isProducer && showAddScript && (
             <form onSubmit={handleCreateScript} className="p-4 rounded-xl border border-vusk-border bg-vusk-card/30 glass-effect space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <label className="text-[10px] text-[#9c94b0] font-mono block">TÍTULO DO ROTEIRO *</label>
                   <input
                     id="new-script-title"
@@ -256,17 +256,17 @@ export const Scripts: React.FC = () => {
                     placeholder="Abordagem pós-comentário quente"
                     value={newTitle}
                     onChange={e => setNewTitle(e.target.value)}
-                    className="w-full h-10 px-3 bg-vusk-bg border border-vusk-border rounded-lg text-xs text-vusk-secondary focus:border-vusk-purple focus:outline-none"
+                    className="w-full h-11 px-3 bg-[#0B080F] border border-[#241E30] text-base md:text-xs rounded-lg text-vusk-secondary focus:border-[#5521B6] focus:outline-none font-mono"
                   />
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <label className="text-[10px] text-[#9c94b0] font-mono block font-bold">VINCULAR PRODUTO *</label>
                   <select
                     id="new-script-product"
                     value={newProdId}
                     onChange={e => setNewProdId(e.target.value)}
-                    className="w-full h-10 px-3 bg-vusk-bg border border-vusk-border rounded-lg text-xs font-mono text-vusk-secondary focus:border-vusk-purple focus:outline-none"
+                    className="w-full h-11 px-3 bg-[#0B080F] border border-[#241E30] rounded-lg text-base md:text-xs font-mono text-vusk-secondary focus:border-[#5521B6] focus:outline-none"
                   >
                     {products.map(p => (
                       <option key={p.id} value={p.id}>{p.name.toUpperCase()}</option>
@@ -275,7 +275,7 @@ export const Scripts: React.FC = () => {
                 </div>
               </div>
 
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 <label className="text-[10px] text-[#9c94b0] font-mono block">CÓPIA / ESBOÇO DO SCRIPT (Use {`{checkout_link}`} para converter dinamicamente)</label>
                 <textarea
                   id="new-script-content"
@@ -284,7 +284,7 @@ export const Scripts: React.FC = () => {
                   placeholder="Seu roteiro matador do whatsapp..."
                   value={newContent}
                   onChange={e => setNewContent(e.target.value)}
-                  className="w-full p-3 bg-vusk-bg border border-vusk-border rounded-lg text-xs text-vusk-secondary focus:border-vusk-purple focus:outline-none font-sans"
+                  className="w-full p-3 bg-[#0B080F] border border-[#241E30] rounded-lg text-base md:text-xs text-vusk-secondary focus:border-[#5521B6] focus:outline-none font-sans"
                 />
               </div>
 
@@ -293,14 +293,14 @@ export const Scripts: React.FC = () => {
                   type="button"
                   id="cancel-add-script-btn"
                   onClick={() => setShowAddScript(false)}
-                  className="px-3 py-1.5 rounded-lg border border-vusk-border hover:bg-white/[0.02] text-[10px] font-mono text-[#9c94b0]"
+                  className="px-4 h-11 rounded-lg border border-[#241E30] hover:bg-white/[0.02] text-xs font-mono text-[#9c94b0] flex items-center justify-center cursor-pointer"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   id="submit-add-script-btn"
-                  className="px-4 py-1.5 rounded-lg bg-vusk-purple text-vusk-secondary hover:text-white transition-all text-[10px] font-mono font-bold"
+                  className="px-5 h-11 rounded-lg bg-vusk-purple hover:bg-[#6329cc] border border-[#5521B6] text-vusk-secondary hover:text-white transition-all text-xs font-mono font-bold flex items-center justify-center cursor-pointer"
                 >
                   Salvar Roteiro 💾
                 </button>
@@ -382,13 +382,13 @@ export const Scripts: React.FC = () => {
             </div>
 
             <form onSubmit={handleAICopilotOptimization} className="space-y-4">
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 <label className="text-[10px] text-[#9c94b0] font-mono block">1. QUAL ROTEIRO VOCÊ DESEJA MELHORAR?</label>
                 <select
                   id="ai-script-context-dropdown"
                   value={targetScriptId}
                   onChange={(e) => setTargetScriptId(e.target.value)}
-                  className="w-full h-10 px-3 bg-vusk-bg border border-vusk-border rounded-lg text-xs font-mono text-vusk-secondary focus:border-vusk-purple focus:outline-none"
+                  className="w-full h-11 px-3 bg-[#0B080F] border border-[#241E30] focus:border-[#5521B6] focus:outline-none rounded-lg text-base md:text-xs font-mono text-vusk-secondary"
                 >
                   <option value="custom">Nenhum (Começar um Novo do zero)</option>
                   {saleScripts.filter(s => s.platform === activePlatform).map(s => (
@@ -397,7 +397,7 @@ export const Scripts: React.FC = () => {
                 </select>
               </div>
 
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 <label className="text-[10px] text-[#9c94b0] font-mono block">2. PEÇA À CONTROLLER DO VUSK CLUB SEU TIPO DE COPY</label>
                 <textarea
                   id="ai-prompt-instruction"
@@ -405,7 +405,7 @@ export const Scripts: React.FC = () => {
                   onChange={(e) => setAiPrompt(e.target.value)}
                   placeholder="Ex: Torne o gancho mais agressivo para atrair adolescentes no TikTok, focando em liberdade e em testar de graça por 7 dias."
                   rows={4}
-                  className="w-full p-3 bg-vusk-bg border border-vusk-border rounded-lg text-xs text-vusk-secondary focus:border-vusk-purple focus:outline-none placeholder-vusk-text-secondary/50 font-sans"
+                  className="w-full p-3 bg-[#0B080F] border border-[#241E30] focus:border-[#5521B6] focus:outline-none rounded-lg text-base md:text-xs text-vusk-secondary placeholder-vusk-text-secondary/50 font-sans"
                 />
               </div>
 
@@ -413,7 +413,7 @@ export const Scripts: React.FC = () => {
                 type="submit"
                 id="ai-generate-submit-btn"
                 disabled={aiGenerating}
-                className="w-full py-2.5 px-4 rounded-lg bg-vusk-purple hover:bg-vusk-purple/90 border border-vusk-purple text-vusk-secondary hover:text-white transition-all duration-300 font-mono text-xs font-bold tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(85,33,182,0.25)] hover:scale-[1.01] disabled:opacity-50 disabled:pointer-events-none"
+                className="w-full h-11 px-4 rounded-lg bg-vusk-purple hover:bg-[#6329cc] border border-[#5521B6] text-vusk-secondary hover:text-white transition-all duration-300 font-mono text-xs font-bold tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(85,33,182,0.25)] active:scale-95 disabled:opacity-50"
               >
                 {aiGenerating ? (
                   <>

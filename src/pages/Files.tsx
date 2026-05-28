@@ -161,13 +161,13 @@ export const Files: React.FC = () => {
         </div>
 
         {/* Filter Selection drop */}
-        <div className="flex items-center gap-3 shrink-0 z-10">
-          <span className="text-[10px] text-[#9c94b0] font-mono uppercase">Selecionar Produto:</span>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 shrink-0 z-10 w-full sm:w-auto">
+          <span className="text-[10px] text-[#9c94b0] font-mono uppercase hidden sm:inline">Selecionar:</span>
           <select
             id="files-product-filter"
             value={selectedProductId}
             onChange={(e) => setSelectedProductId(e.target.value)}
-            className="h-10 px-3.5 bg-vusk-bg border border-vusk-border rounded-lg text-xs font-mono text-vusk-secondary focus:border-vusk-purple focus:outline-none"
+            className="w-full sm:w-auto h-11 px-3.5 bg-[#0B080F] border border-[#241E30] focus:border-[#5521B6] focus:outline-none rounded-lg text-base md:text-xs font-mono text-vusk-secondary"
           >
             <option value="all">TODOS OS MATERIAIS</option>
             {products.map(p => (
@@ -243,7 +243,7 @@ export const Files: React.FC = () => {
                       <button
                         id={`copy-asset-link-${asset.id}`}
                         onClick={() => handleCopyLink(asset.id, asset.url)}
-                        className={`py-2 text-xs font-mono font-bold rounded-lg border transition-all flex items-center justify-center gap-1.5 ${
+                        className={`h-11 text-xs font-mono font-bold rounded-lg border transition-all flex items-center justify-center gap-1.5 ${
                           copiedLink === asset.id
                             ? 'bg-[#10b981]/10 text-[#10b981] border-[#10b981]/30'
                             : 'bg-vusk-purple/15 text-vusk-secondary border-vusk-purple/30 hover:bg-vusk-purple hover:text-white'
@@ -267,7 +267,7 @@ export const Files: React.FC = () => {
                         href={asset.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="py-2 text-xs font-mono bg-vusk-bg hover:bg-white/[0.04] border border-vusk-border text-vusk-secondary rounded-lg flex items-center justify-center gap-1.5 transition-all text-center"
+                        className="h-11 text-xs font-mono bg-vusk-bg hover:bg-white/[0.04] border border-vusk-border text-vusk-secondary rounded-lg flex items-center justify-center gap-1.5 transition-all text-center leading-none"
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>Baixar</span>

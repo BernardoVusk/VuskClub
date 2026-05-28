@@ -156,9 +156,9 @@ export const Rewards: React.FC = () => {
                 <button
                   id={`claim-reward-btn-${lvl.level}`}
                   onClick={() => handleClaimReward(lvl.reward, lvl.target)}
-                  className={`w-full py-2.5 rounded-lg border text-xs font-mono font-bold transition-all ${
+                  className={`w-full h-11 rounded-lg border text-xs font-mono font-bold transition-all flex items-center justify-center cursor-pointer ${
                     isUnlocked 
-                      ? 'bg-vusk-purple hover:bg-vusk-purple/90 text-vusk-secondary hover:text-white border-whitespace/10 hover:scale-[1.01] active:scale-95 shadow-[0_4px_15px_rgba(85,33,182,0.3)]' 
+                      ? 'bg-vusk-purple hover:bg-[#6329cc] text-vusk-secondary hover:text-white border-white/10 active:scale-95 shadow-[0_4px_15px_rgba(85,33,182,0.3)]' 
                       : 'bg-[#14101B]/50 hover:bg-[#14101B]/80 text-[#9c94b0] border-[#241E30] hover:border-vusk-purple/30'
                   }`}
                 >

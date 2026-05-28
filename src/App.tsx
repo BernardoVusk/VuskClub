@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
@@ -18,6 +18,12 @@ import { Rewards } from './pages/Rewards';
 // Main Inner Controller that evaluates authenticated layouts
 const AppInner: React.FC = () => {
   const { isLoggedIn, activeTab } = useApp();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Auto-close menu on tab changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [activeTab]);
 
   // If not authenticated, force premium login portal
   if (!isLoggedIn) {
@@ -48,21 +54,30 @@ const AppInner: React.FC = () => {
   };
 
   return (
-    <div className="flex bg-vusk-bg text-vusk-text-primary min-h-screen relative font-sans">
+    <div className="flex bg-vusk-bg text-vusk-text-primary min-h-screen relative font-sans pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)] overflow-x-hidden min-w-[320px]">
       {/* Aurora visual lighting spotlights */}
-      <div className="aurora-bg top-[-5%] left-[-10%]" />
-      <div className="aurora-bg bottom-[-15%] right-[-5%]" />
+      <div className="aurora-bg top-[-5%] left-[-10%] opacity-50 md:opacity-100" />
+      <div className="aurora-bg bottom-[-15%] right-[-5%] opacity-50 md:opacity-100" />
 
-      {/* Persistent Left Sidebar */}
-      <Sidebar />
+      {/* Mobile Drawer Backdrop overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          id="mobile-drawer-backdrop"
+          className="fixed inset-0 bg-[#0B080F]/90 backdrop-blur-md z-40 md:hidden transition-all duration-300" 
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Left Sidebar (Persistent on desktop, drawer slide-over on mobile) */}
+      <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
       {/* Main viewport flow */}
       <div className="flex-1 flex flex-col relative z-10 min-w-0">
         {/* Spatial context upper header */}
-        <Header />
+        <Header onToggleMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
 
         {/* Dynamic page scroll box container */}
-        <main className="flex-1 overflow-x-hidden overflow-y-auto px-10 py-8 max-w-7xl w-full mx-auto">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto px-4 py-6 sm:px-6 md:px-10 md:py-8 max-w-7xl w-full mx-auto">
           {renderActiveTab()}
         </main>
       </div>

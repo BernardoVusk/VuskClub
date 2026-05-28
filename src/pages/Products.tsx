@@ -55,26 +55,26 @@ export const Products: React.FC = () => {
   return (
     <div className="space-y-8 animate-fade-in pb-12">
       {/* Search Header Row */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-vusk-card/40 border border-vusk-border p-4 rounded-xl glass-effect">
-        <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3.5 top-3.5 w-4.5 h-4.5 text-vusk-text-secondary" />
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-[#14101B]/40 border border-[#241E30] p-4 rounded-xl glass-effect">
+        <div className="relative flex-1 max-w-md w-full">
+          <Search className="absolute left-3.5 top-3.5 w-4.5 h-4.5 text-[#9c94b0]" />
           <input
             id="products-search-bar"
             type="text"
             placeholder="Pesquisar SaaS validados para se afiliar..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full h-11 pl-10.5 pr-4 bg-vusk-bg border border-vusk-border focus:border-vusk-purple focus:outline-none rounded-lg text-xs font-mono text-vusk-secondary placeholder-vusk-text-secondary/50"
+            className="w-full h-11 pl-10 pr-4 bg-[#0B080F] border border-[#241E30] focus:border-[#5521B6] focus:outline-none rounded-lg text-base md:text-xs font-mono text-vusk-secondary placeholder-[#9c94b0]/50"
           />
         </div>
 
-        <div className="hidden lg:flex items-center gap-2 text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/5 px-3 py-2 rounded-lg border border-emerald-500/10">
+        <div className="hidden lg:flex items-center gap-2 text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/5 px-3 py-2 rounded-lg border border-emerald-500/10 h-11 shrink-0">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
           <span>AFILIAÇÕES INSTANTÂNEAS E COMISSÃO DE ATÉ 60%</span>
         </div>
       </div>
 
-      {/* Main Grid display layout */}
+      {/* Main Grid display layout - mobile first start at cols-1 up to md:grid-cols-2 leg:grid-cols-3 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((product) => {
           const affiliation = getAffiliationForProduct(product.id);
@@ -96,8 +96,8 @@ export const Products: React.FC = () => {
               key={product.id}
               className={`rounded-xl border transition-all duration-300 flex flex-col justify-between overflow-hidden relative group ${
                 detailsOpen 
-                  ? 'border-vusk-purple bg-gradient-to-b from-vusk-card/50 to-purple-950/10' 
-                  : 'border-vusk-border bg-vusk-card/30 hover:border-vusk-purple/20'
+                  ? 'border-[#5521B6] bg-gradient-to-b from-[#14101B]/52 to-purple-950/10' 
+                  : 'border-[#241E30] bg-[#14101B]/30 hover:border-[#5521B6]/20'
               }`}
             >
               {/* Product Logo / Card Header info */}
@@ -112,7 +112,7 @@ export const Products: React.FC = () => {
                     />
                   </div>
 
-                  <span className="text-[10px] uppercase font-mono px-2.5 py-1 bg-vusk-purple/20 border border-vusk-purple/30 text-vusk-secondary rounded-lg font-bold">
+                  <span className="text-[10px] uppercase font-mono px-2.5 py-1 bg-vusk-purple/20 border border-vusk-purple/30 text-vusk-secondary rounded-lg font-bold shrink-0">
                     {product.commission_percentage}% Comiss
                   </span>
                 </div>
@@ -131,22 +131,22 @@ export const Products: React.FC = () => {
               </div>
 
               {/* Affiliate link or request action button */}
-              <div className="px-5.5 pb-5.5 pt-2 space-y-3.5 border-t border-vusk-border/40 bg-[#0B080F]/10">
+              <div className="px-5.5 pb-5.5 pt-2 space-y-3.5 border-t border-[#241E30]/40 bg-[#0B080F]/10">
                 {isAffiliated ? (
                   <div className="space-y-2">
                     <span className="text-[9px] font-mono text-emerald-400 font-bold tracking-widest block uppercase">
                       ✓ Você é Afiliado do Produto
                     </span>
                     <div className="flex gap-2">
-                      <div className="flex-1 h-9 px-2.5 bg-vusk-bg border border-vusk-border rounded-lg flex items-center overflow-hidden min-w-0">
-                        <span className="text-[10px] font-mono text-[#9c94b0] truncate select-all">
+                      <div className="flex-1 h-11 px-3 bg-[#0B080F] border border-[#241E30] rounded-lg flex items-center overflow-hidden min-w-0">
+                        <span className="text-xs md:text-[10px] font-mono text-[#9c94b0] truncate select-all">
                           {mockRefLink}
                         </span>
                       </div>
                       <button
                         id={`copy-ref-link-${product.id}`}
                         onClick={() => handleCopyLink(product.id, mockRefLink)}
-                        className={`w-9 h-9 flex items-center justify-center rounded-lg border transition-all ${
+                        className={`w-11 h-11 flex items-center justify-center rounded-lg border transition-all shrink-0 ${
                           copiedLinkId === product.id
                             ? 'bg-[#10b981]/15 text-[#10b981] border-[#10b981]/30'
                             : 'bg-vusk-purple/15 text-vusk-secondary border-vusk-purple/30 hover:bg-vusk-purple hover:text-white'
@@ -154,9 +154,9 @@ export const Products: React.FC = () => {
                         title="Copiar link de afiliado"
                       >
                         {copiedLinkId === product.id ? (
-                          <Check className="w-4 h-4" />
+                          <Check className="w-5 h-5" />
                         ) : (
-                          <Copy className="w-4 h-4" />
+                          <Copy className="w-5 h-5" />
                         )}
                       </button>
                     </div>
@@ -165,7 +165,7 @@ export const Products: React.FC = () => {
                   <button
                     id={`request-aff-btn-${product.id}`}
                     onClick={() => requestAffiliation(product.id)}
-                    className="w-full h-10 px-4 bg-vusk-purple hover:bg-vusk-purple/95 border border-vusk-purple text-vusk-secondary hover:text-white rounded-lg text-xs font-mono font-bold tracking-wide transition-all shadow-[0_4px_15px_rgba(85,33,182,0.25)] hover:scale-[1.01] active:scale-95"
+                    className="w-full h-11 px-4 bg-vusk-purple hover:bg-[#6329cc] border border-[#5521B6] text-vusk-secondary hover:text-white rounded-lg text-xs font-mono font-bold tracking-wide transition-all shadow-[0_4px_15px_rgba(85,33,182,0.25)] active:scale-95"
                   >
                     Solicitar Afiliação Instantânea R$ ⚡
                   </button>
@@ -175,13 +175,13 @@ export const Products: React.FC = () => {
                 <button
                   id={`toggle-details-btn-${product.id}`}
                   onClick={() => setSelectedProductDetails(detailsOpen ? null : product.id)}
-                  className="w-full flex items-center justify-between text-[11px] font-mono text-[#9c94b0] hover:text-vusk-secondary py-1.5 transition-colors"
+                  className="w-full flex items-center justify-between text-[11px] font-mono text-[#9c94b0] hover:text-[#F8F7FF] h-11 py-1 transition-colors border border-transparent hover:border-[#241E30] hover:bg-white/[0.02] rounded-lg px-2 -mx-2"
                 >
                   <span className="flex items-center gap-1.5">
-                    <BookOpen className="w-3.5 h-3.5 text-vusk-purple" />
+                    <BookOpen className="w-4 h-4 text-[#5521B6]" />
                     <span>Materiais, Roteiros e Aulas</span>
                   </span>
-                  <ChevronRight className={`w-3.5 h-3.5 transition-transform ${detailsOpen ? 'rotate-90 text-vusk-purple' : ''}`} />
+                  <ChevronRight className={`w-4 h-4 transition-transform ${detailsOpen ? 'rotate-90 text-[#5521B6]' : ''}`} />
                 </button>
               </div>
 

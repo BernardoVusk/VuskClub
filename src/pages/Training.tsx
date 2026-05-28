@@ -58,8 +58,8 @@ export const Training: React.FC = () => {
           <h3 className="text-sm font-stretch tracking-wider text-[#F8F7FF] uppercase">Playbooks Acadêmicos de Tráfego</h3>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0">
-          <span className="text-[10px] text-[#9c94b0] font-mono uppercase">Filtrar por Especialidade:</span>
+        <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto">
+          <span className="text-[10px] text-[#9c94b0] font-mono uppercase hidden sm:inline">Filtrar:</span>
           <select
             id="training-product-filter"
             value={selectedProductId}
@@ -69,7 +69,7 @@ export const Training: React.FC = () => {
               const match = lessons.find(l => e.target.value === 'all' || l.product_id === e.target.value);
               if (match) setActiveLessonId(match.id);
             }}
-            className="h-10 px-3 bg-vusk-bg border border-vusk-border rounded-lg text-xs font-mono text-vusk-secondary focus:border-vusk-purple focus:outline-none"
+            className="w-full sm:w-auto h-11 px-3 bg-[#0B080F] border border-[#241E30] focus:border-[#5521B6] focus:outline-none rounded-lg text-base md:text-xs font-mono text-vusk-secondary"
           >
             <option value="all">TODAS AS AULAS</option>
             {products.map(p => (
@@ -114,7 +114,7 @@ export const Training: React.FC = () => {
                 <button
                   id={`toggle-complete-stage-btn-${activeLesson.id}`}
                   onClick={() => handleToggleComplete(activeLesson.id)}
-                  className={`px-4 h-9 font-mono font-bold text-xs rounded-lg border transition-all flex items-center gap-2 ${
+                  className={`px-4 h-11 font-mono font-bold text-xs rounded-lg border transition-all flex items-center justify-center gap-2 ${
                     completedLessonIds.includes(activeLesson.id)
                       ? 'bg-emerald-500/15 text-[#10b981] border-[#10b981]/40'
                       : 'bg-[#14101B] hover:bg-vusk-purple text-vusk-secondary border-vusk-border hover:border-vusk-purple hover:text-white'
